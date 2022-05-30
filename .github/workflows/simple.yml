@@ -19,4 +19,13 @@ jobs:
           from datetime import datetime
           print(datetime.now())
         shell: python
+  run-windows-commands:
+    runs-on: windows-latest
+    steps:
+      - name: Directory PowerShell
+        run: Get-Location
+      - name: Directory Bash
+        run: pwd
+        shell: bash
+    
   
