@@ -14,4 +14,9 @@ jobs:
         run: |
           node -v
           npm -v
+      - name: python command
+        run: |
+          from datetime import datetime
+          print(datetime.now())
+        shell: python
   
