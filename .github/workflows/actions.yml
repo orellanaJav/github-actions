@@ -2,11 +2,8 @@ name: Actions Workflow
 
 on:
   schedule:
-    # minutes, hours, day of month, month, day of the week
-    # https://crontab.guru/#0/3_*_*_*_*
-    - cron: "0/3 * * * *"
-    - cron: "0/6 * * * *"
-  # push:
+    - cron: "0/5 * * * *"
+    - cron: "0/6 * * * *"  
   pull_request:
     types:
       - closed
