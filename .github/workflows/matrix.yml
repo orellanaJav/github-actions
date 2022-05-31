@@ -14,6 +14,12 @@ jobs:
         include:
           - os: ubuntu-latest
             node_version: 4
+
+          # Added an extra variable when is ubuntu and node_version is 8
+          - os: ubuntu-latest
+            node_version: 8
+            is_ubuntu_8: "true"
+        
         
         # this exclude a combinations
         exclude:
@@ -21,8 +27,10 @@ jobs:
             node_version: 6
           - os: macos-latest
             node_version: 10
-            
+
     runs-on: ${{ matrix.os }}
+    env: 
+      IS_UBUNTU_8: ${{ matrix.is_ubuntu_8 }}
     steps:
       - name: Log node version
         run: node -v
@@ -30,4 +38,6 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
       - name: Log node version after uses with
-        run: node -v
+        run: |
+          node -v
+          echo $IS_UBUNTU_8
