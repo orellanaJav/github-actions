@@ -5,8 +5,23 @@ jobs:
   node-version:
     strategy:
       matrix:
+        # this code run the job 9 times, because are two arrays and this
+        # arrays run the steps for each combination.
         os: [macos-latest, ubuntu-latest, windows-latest]
         node_version: [6, 8, 10]
+
+        # this include an extra combination to run
+        include:
+          - os: ubuntu-latest
+            node_version: 4
+        
+        # this exclude a combinations
+        exclude:
+          - os: ubuntu-latest
+            node_version: 6
+          - os: macos-latest
+            node_version: 10
+            
     runs-on: ${{ matrix.os }}
     steps:
       - name: Log node version
