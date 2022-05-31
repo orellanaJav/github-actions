@@ -1,17 +1,42 @@
 name: Actions Workflow
 
 on:
-  repository_dispatch:
-    types: [build]
+  push:
+    # To ignore branches
+    # branches-ignore:
+      # - ""
+
+    branches:
+      - 'feature/*' # matches feature/featA, feature/featB
+      - 'feature/*' # matches feature/featA/a
+      - '!feature/featC' # To ignore one branch on feature
+    
+    paths:
+      - "**.js" # Only run when .js file is updated or pushed
+    
+    # paths-ignore:
+    #   - ".csv"
+
+  pull_request:
+    branches:
+      - main
+
+  # To call workflow manual external
+  # repository_dispatch:
+  #   types: [build]
+
+  # To schedule workflow
   # schedule:
   #   - cron: '0/5 * * * *'
   #   - cron: '0/6 * * * *'
-  pull_request:
-    types:
-      - closed
-      - assigned
-      - opened
-      - reopened
+  
+  # To call on pull request
+  # pull_request:
+  #   types:
+  #     - closed
+  #     - assigned
+  #     - opened
+  #     - reopened
 
 jobs:
   run-github-actions:

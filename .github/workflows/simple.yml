@@ -2,7 +2,10 @@
 name: Shell commands
 
 # Accions to trigger events
-on: [pull_request]
+on:
+  push:
+    branches:
+      - dev
 
 jobs:
   run-shell-command:
